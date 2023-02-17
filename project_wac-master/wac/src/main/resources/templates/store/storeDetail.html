@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{ /layout/basic-layout }">
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/storeDetail.css}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+		rel="stylesheet">
+</th:block>
+<title>Wacdonald</title>
+<div layout:fragment="content">
+	<div class="frontFont">
+		<h1>매장 정보 상세/수정 페이지</h1>
+	</div>
+		<form id="formDetailStore" method="post" onsubmit="return confirm('정말 수정 하시겠습니까?')">
+			<div class="Container">
+				<div>
+					<div class="div_label">
+						<label for="storeName">매장 이름</label>
+					</div>
+					<br/>
+					<input class="inputs" id="storeName" type="hidden" th:value="${ store.storeId }" name="storeId"/>
+					<input class="inputs" id="storeName" type="text" th:value="${ store.storeName }" name="storeName"/>
+				</div>
+				<br/>
+				<div>
+					<div class="div_label">
+						<label for="storeAddress">주소</label>
+					</div>
+					<br/>
+					<input class="inputs" id="storeAddress" type="text" th:value="${ store.storeAddress }" name="storeAddress"/>
+				</div>
+				<br/>
+				<div>
+					<div class="div_label">
+						<label for="storePhone">매장 전화번호</label>
+					</div>
+					<br/>
+					<input class="inputs" id="storePhone" type="text" th:value="${ store.storePhone }" name="storePhone"/>
+				</div>
+				<br/>
+				<div>
+					<div class="div_label">
+						<label for="content">영업시간</label>
+					</div>
+					<br/>
+					<input class="inputs" id="storeTime" type="text" th:value="${ store.storeTime }" name="storeTime"/>
+				</div>
+				<br/>
+				<div>
+					<div class="div_label">
+						<label for="image">이용가능 서비스</label>
+					</div>
+					<br/>
+					<input class="inputs" id="drinkExplain" type="text" th:value="${ store.drinkExplain}" name="drinkExplain"/>
+				</div>
+				<br/>
+			<div>
+				<input type="submit" class="buttons" id="btnModify" value="수정" readonly/>
+				<br/>
+				<br/>
+				<input class="dbuttons" value="삭제" readonly/>
+				<input class="loginUser" type="hidden" th:value="${ #authentication.name }">
+			</div>
+		</div>
+		<div>
+	</div>
+	</form>
+</div>
+<th:block layout:fragment="script">
+<script th:src="@{/script/storeDetail.js}"></script>
+</th:block>
+</html>

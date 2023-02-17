@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{ /layout/basic-layout }">
+    
+<title>Wacdonaldo menuOrder</title>
+
+<div layout:fragment="content">
+<!-- 개발 공간. -->
+<input class="loginUser" type="hidden" th:value="${ #authentication.name }">
+<div id="jb-sidebar-left">
+</div>
+
+<div id="jb-sidebar-left">
+</div>
+
+    <div id="jb-center">
+        <div class="visualArea bgMenu02">
+            <div class="inner">
+                <h1 class="storeFont">주문 하기</h1>
+					<ul class=navPath>
+						<li><a class="atag" href="/">Home</a></li>
+						<li><a class="atag" href="">Order</a></li>
+						<li><a class="atag" href="/menu">Menu</a></li>
+					</ul>
+				<p class="subCopy">
+                    <br/>
+                    <!-- 
+                    <input type="text" id="storeName" name="storeName" th:value="${ storeName }">
+                    <input type="text" id="userAddress" name="userAddress" th:value="${ userAddress }">
+                     -->
+                </p>
+                <!-- 
+                <ul class="navPath">
+                    <li><a href="#" onclick="goHome()">Home</a></li>
+            <li><a href="javascript:gotoMenu(1);">Menu</a></li>
+            <li><a href="javascript:gotoMenu(1);">버거</a></li>
+        </ul>
+         -->
+    </div>
+</div>
+
+<div class="contArea">
+<br/>
+    <div class="inner">
+        <ul class="tabType01">
+
+            <li class="q button buger"><a class="q btn form-control" id="buger">버거</a></li>
+            <li class="q button meal"><a class="q" id="meal">세트메뉴</a></li>
+            <li class="q button side"><a class="q" id="side">사이드 & 디저트</a></li>
+            <li class="q button drink"><a class="q" id="drink">음료 & 카페</a></li>
+            <li class="q button morning"><a class="q" id="morning">왁모닝</a></li>
+            <li class="q button morningMeal"><a class="q" id="morningMeal">왁모닝 세트</a></li>
+
+        </ul>
+        <div class="mcMenu">
+            <p class="count" id="count"></p>
+            <ul class="menuList" id="menuList">
+            
+            </ul>
+            
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <div class="modal fade" id="mylistModal"
+                tabindex="-1" aria-labelledby="mylistModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5"
+                                id="mylistModalLabel">장바구니 추가</h1>
+                            <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- 팀아이디 --> <!-- 
+                            <input type="hidden"
+                                id="modalMenuId" readonly />
+                            <!-- 사용자아이디 --> <!-- 
+                            <input type="hidden"
+                                id="modalMenuName" readonly />    
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                class="btn btn-outline-secondary"
+                                data-bs-dismiss="modal">더 담기</button>
+                            <button type="button"
+                                id="modalBtnSuccess"
+                                class="btn btn-outline-success">장바구니로 가기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ -->
+</div>
+
+
+</div>
+<script>
+var init_page =0;
+var totalPage =0;
+$(document).ready(function (){
+    getList(1);
+});
+function getList(page_val){
+    $.post("/kor/menu/listContent.do",
+            {   
+                page:page_val,
+                sub_category_seq:1
+            },  function(data){
+                if(data.is_ok=="ok"){
+                    totalPage=data.totalPage;
+                    init_page=data.page;
+                    $("#count").html(data.totalCount+" Products")
+                    for(var i=0;i<data.list.length;i++){
+                        $("#menuList").append(addList(data.list[i]));
+                    }
+                    if(page_val>1){
+                        $("[data-seq='"+data.list[0].seq+"']").focus();
+                    }
+                    altEscapeTag();
+                    if(totalPage==page_val){
+                        $("#btnMore").hide();
+                    }
+                }else{
+                    alert("목록가져오기에 실패하였습니다\관리자에게 문의하세요");
+                }
+            }
+            
+    );
+    
+}
+function goDetail(seq){
+        $("#seq").val(seq);
+        $("#searchForm").attr("action","/kor/menu/detail.do");
+        $("#searchForm").submit();
+}
+function addList(data){
+    return makeHtml("menu",data);
+}
+function more(){
+    getList(init_page+1);
+}
+
+function goHome() {
+    alert("hello")
+}
+
+</script>
+<script id="menu" type="text/templet">
+<li>
+    <a href="javascript:goDetail({seq})" data-seq="{seq}">
+        <div class="thum"><img src="{pc_list_image_url}" alt="{pc_list_kor_alt}"></div>
+        <div class="name">
+        <strong class="ko">{kor_name}</strong>
+    <em class="en">{eng_name}</em>
+</div>
+</a>
+    </li>
+</script>
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</th:block>
+<th:block layout:fragment="script">
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{ /script/menuOrder.js }"></script>
+    <script th:inline="javascript">
+        const storeName = [[ ${ storeName } ]];
+        const userAddress = [[ ${ userAddress } ]];
+    </script>
+</th:block>
+</html>
+
+
+

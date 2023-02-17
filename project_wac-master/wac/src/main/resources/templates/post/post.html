@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{ /layout/basic-layout }">
+
+<title>Wacdonaldo</title>
+<div layout:fragment="content">
+	<!-- 개발 공간. -->
+
+	<div id="jb-sidebar-left"></div>
+
+	<div id="jb-sidebar-left"></div>
+
+	<div id="jb-center">
+		<div class="visualArea bgMenu01">
+			<div class="inner">
+				<h1 class="storeFont">What's News</h1>
+				
+				<p class="subCopy">
+				<ul class=navPath>
+					<li><a class="atag" href="/">Home</a></li>
+					<li><a class="atag" href="">News</a></li>
+					<li><a class="atag" href="">프로모션</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="adminOnly" style="display: block">
+			<!-- TODO 테스트 끝나고 none 으로 변경 후 js 주석해제 -->
+			<ul class="tabType01">
+				<li class="div_label" th:if="${ #authentication.name } == admin" style="margin-left:auto; margin-right:auto; text-align: center;">
+                <a class="q" th:href="@{ /post/create }">새 글 작성</a></li>
+			</ul>
+		</div>
+
+		<div class="contArea">
+			<div class="inner">
+				<ul class="tabType01">
+
+					<li class="q button promotion"><a class="q btn form-control"
+						id="promotion">프로모션</a></li>
+					<li class="q button post"><a class="q btn form-control"
+						id="news">새로운 소식 (공지사항)</a></li>
+
+				</ul>
+				<div class="postList">
+					<p class="count" id="count"></p>
+					<ul class="posts" id="posts">
+
+					</ul>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</div>
+<script>
+var init_page =0;
+var totalPage =0;
+$(document).ready(function (){
+    getList(1);
+});
+function getList(page_val){
+    $.post("/kor/menu/listContent.do",
+            {   
+                page:page_val,
+                sub_category_seq:1
+            },  function(data){
+                if(data.is_ok=="ok"){
+                    totalPage=data.totalPage;
+                    init_page=data.page;
+                    $("#count").html(data.totalCount+" Products")
+                    for(var i=0;i<data.list.length;i++){
+                        $("#menuList").append(addList(data.list[i]));
+                    }
+                    if(page_val>1){
+                        $("[data-seq='"+data.list[0].seq+"']").focus();
+                    }
+                    altEscapeTag();
+                    if(totalPage==page_val){
+                        $("#btnMore").hide();
+                    }
+                }else{
+                    alert("목록가져오기에 실패하였습니다\관리자에게 문의하세요");
+                }
+            }
+            
+    );
+    
+}
+function goDetail(seq){
+        $("#seq").val(seq);
+        $("#searchForm").attr("action","/kor/menu/detail.do");
+        $("#searchForm").submit();
+}
+function addList(data){
+    return makeHtml("menu",data);
+}
+function more(){
+    getList(init_page+1);
+}
+
+function goHome() {
+    alert("hello")
+}
+
+</script>
+<script id="menu" type="text/templet">
+<li>
+    <a href="javascript:goDetail({seq})" data-seq="{seq}">
+        <div class="thum"><img src="{pc_list_image_url}" alt="{pc_list_kor_alt}"></div>
+        <div class="name">
+        <strong class="ko">{kor_name}</strong>
+    <em class="en">{eng_name}</em>
+</div>
+</a>
+    </li>
+</script>
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{/css/post.css}">
+</th:block>
+<th:block layout:fragment="script">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	<script th:src="@{ /script/post.js }"></script>
+</th:block>
+</html>
+
+
+

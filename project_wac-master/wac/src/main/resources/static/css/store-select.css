@@ -1,0 +1,445 @@
+@charset "UTF-8";
+
+/** 
+생성자 장민석.
+**/
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form,
+	fieldset, input, select, textarea, p, blockquote, th, td, button {
+	margin: 0;
+	padding: 0;
+}
+
+.storeContainer {
+	width: 80%;
+	height: 900px;
+	text-align: center;
+	padding: 50px;
+	margin-bottom: 20px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+
+.storebanner {
+	background-color: lightgray;
+	padding: 5px;
+	background-image: url('../img/storeselect.png');
+	background-size: 100% 290px;
+}
+
+.inner {
+	width: 1168;
+	height: 130;
+	margin: 60px 218px;
+	padding: 20px;
+	padding-left: 50px;
+	background-color: transparent;
+}
+
+.storeFont {
+	color: white;
+	font-size: 50px;
+	background-color: transparent;
+}
+
+.navPath{
+	list-style: none;
+	padding: 0px;
+	margin-top: 30px;
+}
+
+.navPath li+li:before {
+	content: '';
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	margin: 0 14px 0 10px;
+	vertical-align: middle;
+	border-radius: 100%;
+	background: #f5bd43;
+}
+
+.navPath li {
+	margin: 0px;
+	float: left;
+	background-color: transparent;
+}
+
+a {
+	color: white;
+	font-size: 15px;
+	background-color: transparent;
+}
+
+.infoa{
+	padding:5px;
+}
+#map {
+	margin: 5px;
+	height: 950px;
+	width: 850px;
+	border-radius: 5px 5px 5px 5px;
+}
+.mapArea {
+	float: left;
+}
+.storePlace {
+	height: 600px;
+	margin: 5px;
+	border-radius: 5px 5px 5px 5px;
+	display: grid;
+}
+
+table {
+	border-collapse: collapse;
+	width:600px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 5px 5px 5px 5px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+thead tr {
+    background-color: black;
+    color: #FFD126;
+    text-align: left;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+th, td {
+	text-align: center;
+	font-weight: bolder;
+	padding: 12px 15px;
+    font-size: 20px;
+    opacity: 1.0;
+    cursor: pointer;
+}
+
+.storeName:hover {
+	opacity: 0.5;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+tbody tr:last-of-type {
+    border-bottom: 2px solid lightgray;
+}
+tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+.frontFont {
+	margin : 10px;
+	padding : 10px;
+	font-size: 30px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 3px solid black;
+	
+}
+.customoverlay {
+	position: relative;
+	bottom: 85px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	border-bottom: 2px solid #ddd;
+}
+
+.customoverlay:nth-of-type(n) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.customoverlay a {
+	display: block;
+	text-decoration: none;
+	color: #000;
+	text-align: center;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: bold;
+	overflow: hidden;
+	background: #d95050;
+	background: #d95050
+		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
+		no-repeat right 14px center;
+}
+
+.customoverlay .title {
+	display: block;
+	text-align: center;
+	background: #fff;
+	margin-right: 35px;
+	padding: 10px 15px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.customoverlay:after {
+	content: '';
+	position: absolute;
+	margin-left: -12px;
+	left: 50%;
+	bottom: -12px;
+	width: 22px;
+	height: 12px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+.nextPage{
+	padding:5px;
+	width: 200px;
+	text-align:center;
+	font-size:30px;
+	font-weight:bolder;
+	background-color: #FFD126;
+	border: none;
+	border-radius: 5px 5px 5px 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+	cursor: pointer;	
+	float:left;
+	margin-left:70px;
+}
+
+.buyPage {
+	padding:5px;
+	width: 200px;
+	text-align:center;
+	font-size:30px;
+	font-weight:bolder;
+	background-color: #d95050;
+	border: none;
+	border-radius: 5px 5px 5px 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+	cursor: pointer;	
+	float:right;
+	margin-right:70px;
+}
+
+.nextPage:hover {
+	opacity: 0.5;
+}
+.buyPage:hover {
+	opacity: 0.5;
+}
+
+.info-marker {
+    display: block;
+    background: #FFF;
+    color: #50627F;
+    text-align: center;
+    font-weight: bold;
+    height: 24px;
+    line-height:22px;
+    padding:0px 10px;
+    text-align: center;
+}
+.dInfoText{
+	background-color: #f8f8f8;
+	height: 50px;
+	width: 545px;
+	font-family: 'Noto Sans KR', sans-serif;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	margin-left:auto;
+	margin-right:auto;
+	padding-bottom:3px;
+	}
+.dInfoAddress, .dInfoAddress2{
+	background-color: #f8f8f8;
+	height: 50px;
+	width: 545px;
+	font-family: 'Noto Sans KR', sans-serif;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	margin-left:auto;
+	margin-right:auto;
+	}
+#userAddress, #userAddress2 {
+	border:none;
+	background-color: transparent;
+	font-size: 30px;
+	text-align: center;
+	font-family: 'Noto Sans KR', sans-serif;
+	width: 545px;
+}
+.textAddress2 {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size : 30px;
+	padding-top:4px;
+	padding-right:330px;
+	margin-right: 80px;
+	margin-bottom: 20px;
+}
+.dInfo {
+	border:none;
+	background-color: transparent;
+	font-size: 30px;
+	text-align: center;
+	font-family: 'Noto Sans KR', sans-serif;
+	padding-top:6px;
+}
+.textStore {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: bolder;
+	text-align:center;
+	padding-top:10px;
+	float: left;
+	margin-left: 70px;
+	}
+.textAddress {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: bolder;
+	text-align:center;
+	padding-top:10px;
+	float:left;
+	margin-left: 70px;
+	}	
+
+.storePlaceInfo {
+	margin-bottom: 30px;
+}
+.buttonAddress {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 20px;
+	float:right;
+	margin-right:50px;
+}
+
+@media ( max-width : 792px) {
+	table {
+		width: 450px;
+		height: 350px;
+		text-align: center;
+		font-size: 5px;
+	}
+}
+
+/** 페이징 **/
+#storeTableNav {
+    display: inline-block;
+    border-right: 0;
+    padding-left: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+#storeTableNav li {
+    text-align: center;
+    float: left;
+}
+
+#storeTableNav li a {
+    display: block;
+    font-size: 30px;
+    padding: 9px 12px;
+    box-sizing: border-box;
+    border: 1px;
+    background-color: #FFD126;
+}
+
+#storeTableNav li a:hover {
+	opacity: 0.5;
+}
+
+#storeTableNav li.on {
+    background: #FFD126;
+    border-radius : 5px 5px 5px 5px;
+}
+
+#storeTableNav li.on a {
+    background-color: black;
+    font-size: 30px;
+}
+
+/** 내 위치 버튼 **/
+
+#getMyPositionBtn, .buttonAddress {
+	font-size: 20px;
+	font-weight: bolder;
+	background-color: #FFD126;
+	border: none;
+	border-radius: 5px 5px 5px 5px;
+	font-family: 'Noto Sans KR', sans-serif;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	cursor: pointer;
+	width: 100px;
+	height: 50px;
+	float: right;
+	margin-right:70px;
+}
+#getMyPositionBtn:hover {
+	opacity: 0.5;
+}
+
+.toggle3 input[type=radio]{
+    display: none;
+    font-size: 3em;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bolder;
+    float:left;
+}
+.toggle3 input[type=radio] + label {
+    color: #e0e0e0;
+    font-size: 3em;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bolder;
+    float:left;
+}
+.toggle3 input[type=radio]:checked + label {
+    color: #000;
+    font-size: 3em;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bolder;
+}
+.storeSearch-panel {
+	height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	padding-bottom: 0px;
+}
+label {
+  cursor: pointer;
+  margin: 10px;
+}
+.storeSearch {
+	float:left;
+	margin: 10px;
+	margin-left: 60px;
+	padding-top: 5px;
+	width: 200px;
+	height: 35px;
+	border: none;
+  	border-bottom: 3px solid black;
+  	font-family: 'Noto Sans KR', sans-serif;
+  	font-size: 20px;
+  	text-align: center;
+}
+.storeSearch:focus {
+    outline: none;
+  }
+.storeSearch-btn {
+	float:left;
+	margin: 10px;
+	width: 100px;
+	height: 43px;
+	font-size: 20px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: bolder;
+	background-color: #FFD126;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	cursor: pointer;
+	border: none;
+	border-radius: 5px 5px 5px 5px;
+	padding-bottom:3px;
+}
+.storeSearch-btn:hover {
+	opacity: 0.5;
+}

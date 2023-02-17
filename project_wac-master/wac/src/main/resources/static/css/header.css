@@ -1,0 +1,251 @@
+@charset "utf-8";
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+   CSS 초기화
+*/
+
+/* html, body, div, span, applet, object, iframe,
+/* h1, h2, h3, h4, h5, h6, p, blockquote, pre, */
+/* a, abbr, acronym, address, big, cite, code, */
+/* del, dfn, em, img, ins, kbd, q, s, samp, */
+/* small, strike, strong, sub, sup, tt, var, */
+/* b, u, i, center, */
+/* dl, dt, dd, ol, ul, li, */
+/* fieldset, form, label, legend, */
+/* table, caption, tbody, tfoot, thead, tr, th, td, */
+/* article, aside, canvas, details, embed,  */
+/* figure, figcaption, footer, header, hgroup,  */
+/* menu, nav, output, ruby, section, summary, */
+/* time, mark, audio, video { */
+/* 	margin: 0; */
+/* 	padding: 0; */
+/* 	border: 0; */
+/* 	font-size: 100%; */
+/* 	font: inherit; */
+/* 	vertical-align: baseline; */
+/* } 
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* 공용 CSS */
+.header {
+	margin: 3vh 5vw;
+}
+
+.d-none {
+	display: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.fix {
+  position:fixed;
+  animation: down 0.5s ease
+}
+
+/* header.html|css */
+.headArea {
+	width: 100vw;
+	height: 140px;
+}
+
+/* nav */
+.nav * {
+	font-family: fantasy;
+	font-size: 20px;
+	color: rgba(58, 58, 60);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.nav {
+	display: flex;
+	justify-content: space-around;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1168px;
+	height: 140px;
+}
+
+/* logo */
+.logo {
+	width: 120px;
+	height: 114px;
+	border: 0px solid;
+	border-radius: 100px;
+}
+
+/* List */
+.navList, .signList {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	width: 50vw;
+	margin-bottom: -10px;
+}
+
+.navBtn {
+	line-height:116px;
+	width: 105px;
+	height: 116px;
+	
+}
+.navBtn:hover {
+	border-bottom: 1px solid orange;
+	font-size: 22px;
+}
+
+.signList {
+	width: 10vw;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.signList * {
+	border: 1px solid;
+	border-radius: 15px;
+	font-size: 16px;
+	width: 95px;
+	height: 25px;
+	line-height: 25px;
+	margin-bottom: 10px;
+}
+
+.signInBtn{
+	color: #f1f1f1;
+	border-color: green;
+	background-color: green;
+}
+.signInBtn:hover{
+	font-size:20px;
+	color:green;
+	background-color: ghostwhite;
+}
+
+.signUpBtn{
+	color: #f1f1f1;
+	border-color: orange;
+	background-color: orange;
+}
+.signUpBtn:hover{
+	font-size:20px;
+	color:orange;
+	background-color: ghostwhite;
+}
+
+.signOutBtn{
+    color: #f1f1f1;
+    border-color: green;
+    background-color: green;
+}
+.signOutBtn:hover{
+    font-size:20px;
+    color:green;
+    background-color: ghostwhite;
+}
+
+.myPageBtn{
+    color: #f1f1f1;
+    border-color: orange;
+    background-color: orange;
+}
+.myPageBtn:hover{
+    font-size:20px;
+    color:orange;
+    background-color: ghostwhite;
+}
+
+.cartBtn{
+    color: #f1f1f1;
+    border-color: tomato;
+    background-color: tomato;
+}
+.cartBtn:hover{
+    font-size:20px;
+    color:tomato;
+    background-color: ghostwhite;
+}
+
+/* 792px 이하 해상도 */
+@media(max-width:792px){
+	.header {
+		margin: 0;
+		padding: 0;
+		font-size: 100%;
+	}
+	
+	.logo{
+		display: none;
+	}
+	
+	.nav, .nav * {
+		background-color: orange;
+		justify-content: space-around;
+	}
+	
+	.navList {
+		margin-right: 100px;
+	}
+		
+	.navBtn {
+		line-height:25px;
+		width: 80px;
+		height: 25px;
+	
+	}
+	.navBtn:hover {
+		border-bottom: 1px solid orange;
+		font-size: 22px;
+	}
+	
+	.signList {
+		flex-direction: row;
+		margin-right: 10px;
+		width: 200px;
+		height: 50px;
+	}
+	
+	.signList * {
+		margin: 15px 5px;
+	}
+	
+	.signInBtn{
+		background-color: green;
+	}
+	
+	.signUpBtn{
+		background-color: red;
+	}
+	.signUpBtn:hover{
+		color: red;
+		border-color: red;
+	}
+	
+}
